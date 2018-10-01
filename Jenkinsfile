@@ -8,11 +8,11 @@ pipeline {
                 }
             }
             steps {
-                sh 'python -m py_compile sources/add2vals.py sources/calc.py' 
+                sh 'ls -las && python -m py_compile sources/add2vals.py sources/calc.py' 
             }
         }
     
-stage('Test') {
+        stage('Test') {
             agent {
                 docker {
                     image 'qnib/pytest'
@@ -27,7 +27,7 @@ stage('Test') {
                 }
             }
         }
-stage('Deliver') { 
+        stage('Deliver') { 
             agent {
                 docker {
                     image 'cdrx/pyinstaller-linux:python2' 
